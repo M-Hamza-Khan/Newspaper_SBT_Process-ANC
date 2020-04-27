@@ -155,7 +155,7 @@ namespace NewsPaperSBT.Controllers
                     xuser.OTP = objOTP.OPTP;
                     xuser.Email = NewspaperSBTSession.CurrentUser.Email;
                     xuser.Fullname = NewspaperSBTSession.CurrentUser.Fullname;
-                    //for testing
+                    //for testin
                     Email.GetEmailTemplate("OTP", xuser);
                 }
             }
