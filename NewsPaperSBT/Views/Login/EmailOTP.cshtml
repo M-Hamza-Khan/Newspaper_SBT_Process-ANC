@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "ANC Vendor Connect - OTP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-sm-8 sm-width-100">
+            <div class="validation vendor-info-block">
+                <h1>OTP  Email </h1>
+                <p>A  One-time Passcode (OTP) has been sent to <a  style="color:#007bff;"> @ViewBag.email</a> </p>
+                <p>  for the VendorConnect.anc365.com site registration.</p>
+                <p>Please enter the OTP below to verify your Email Address.   The OTP will be valid for 10 minutes, after that you can re-send the OTP. </p>
+                <h4>Verification Code</h4>
+                <form action="/Login/EmailOTP" method="post" onsubmit="return  formvalidate()">
+
+                    <input type="number" id="txtotp"  name="OTP" class="form-control">
+                    <button type="submit" onkeyup="clearborder()" class="btn-primary btn-lg">Verify</button>
+                    <button type="button" id="btnresend"  onkeyup="clearborder()"  class="btn-success btn-lg">Resend Verification Code</button>
+                    <p id="message" hidden>@ViewBag.Message </p>
+                    <p id="messagedesc" hidden>@ViewBag.MessageTitle </p>
+                </form>
+
+</div>
+        </div>
+        <!-- ================== VENDOR INFO BLOCK END ================== -->
+    </div>
+</div>
+@*<div class="container">
+    <div class="row  justify-content-center">
+        <div class="col-sm-8 sm-width-100">
+            <div class="validation vendor-info-block">
+                <form action="/Login/EmailOTP" method="post" onsubmit="return formvalidate()">
+
+
+                    <h1>Email OTP</h1>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, . Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
+                    <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                    <h4>Verification Code</h4>
+                    <input type="text" id="txtotp" onkeyup="clearborder()" name="OTP" class="form-control"> <br />
+                    <button type="submit" class="btn-primary btn-lg">Verify</button>
+                    <p id="message" hidden>@ViewBag.Message </p>
+                    <p id="messagedesc" hidden>@ViewBag.MessageTitle </p>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>*@
+@section FooterScripts{
+    <script src="~/scripts/PageJS/emailotp.js"></script>
+}

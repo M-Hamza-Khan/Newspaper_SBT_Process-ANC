@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Authentication";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="validation vendor-info-block">
+                <h1>Enable authenticator</h1>
+                <p>To use an authenticator app go through the following steps:</p>
+                <ol>
+                    <li>
+                        Download a two-factor authenticator app like Microsoft Authenticator for <span>Windows Phone, Android</span> and <span>iOS</span> or Google Authenticator for <span>Android</span> and <span>iOS.</span>
+                    </li>
+                    <li>
+                        Scan the QR Code or enter this key <span class="clr">@ViewBag.setupcode</span> into your two factor authenticator app. Spaces and casing do not matter.
+                        <p>To enable Qr Code generation please read our documentation.</p>
+                        <img src="@ViewBag.BarcodeImageUrl" width="300" alt="">
+                    </li>
+                    <li>
+                        Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below.
+                        <h4>Verification Code</h4>
+                        <form action="/Login/Authentication" enctype="multipart/form-data" method="post">
+                            <input type="text" name="tokken" class="form-control">
+                            <button type="submit">Verify</button>
+                        </form>
+                    </li>
+                </ol>
+
+            </div>
+        </div>
+        </div></div>

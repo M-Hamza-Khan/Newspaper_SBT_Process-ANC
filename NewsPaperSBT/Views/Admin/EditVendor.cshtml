@@ -1,0 +1,213 @@
+﻿@model IEnumerable<NewsPaperSBT.Models.DAL.Sp_GetAllUsersByUserId_Result>
+@{var user = NewsPaperSBT.Models.Shared.NewspaperSBTSession.CurrentUser;} 
+@{
+    ViewBag.Title = "ANC Vendor Connect - Edit Vendor ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (Model != null)
+{  
+
+    foreach (var item in Model)
+    {
+        <div class="row m-0">
+            <div class="col-sm-12">
+                <div class="inner-content">
+                    <h1>Edit/update details</h1>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="custom-tabs">
+                                <ul class="nav nav-tabs " id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="user-tab" data-toggle="tab" href="#user" role="tab" aria-controls="user" aria-selected="true"  >User Details</a>
+                                    </li>
+                                    @*<li class="nav-item">
+                                        <a class="nav-link" id="upc-tab" data-toggle="tab" href="#upc" role="tab" aria-controls="upc" aria-selected="false">UPC Authorization</a>
+                                    </li>*@
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
+                                        <div class="form-section">
+                                                <div class="form-row m-0">
+
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group">
+                                                            <label class="form-label" for="txtvendorname">Vendor Name</label>
+                                                            <input id="txtvendorname" class="form-input" data-parsley-pattern="/^[a-zA-Z \W]*$/" type="text"  data-parsley-trigger="change" required="" value="@item.vendorname">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group ">
+                                                            <label class="form-label" for="txtcontactname">Contact Name</label>
+                                                            <input id="txtcontactname" class="form-input" type="text" data-parsley-pattern="/^[a-zA-Z \W]*$/"  data-parsley-trigger="change" required="" value="@item.contactname">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group ">
+                                                            <label class="form-label" for="txtemail">Email Address</label>
+                                                            <input id="txtemail" disabled class="form-input" data-parsley-pattern="/^[a-zA-Z \W]*$/"  type="email" value="@item.vndEmail">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group ">
+                                                            <label class="form-label" for="txtphone">Phone Number</label>
+                                                            <input id="txtphone" class="form-input" data-parsley-pattern="^[0-9]{10}(?:List)?$" parsley-type="phone" data-parsley-trigger="change" required="" type="tel" value="@item.phone">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group ">
+                                                            <label class="form-label" for="txtstreet">Street</label>
+                                                            <input id="txtstreet"   data-parsley-trigger="change" required="" class="form-input" type="text" value="@item.street">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group ">
+                                                            <label class="form-label" for="txtcity">City</label>
+                                                            <input id="txtcity" data-parsley-trigger="change" data-parsley-pattern="/^[a-zA-Z \W]*$/" required="" class="form-input" type="text" value="@item.city">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group ">
+                                                            <label class="form-label" for="txtstate">State/Province</label>
+                                                            <input id="txtstate" data-parsley-trigger="change" required="" data-parsley-pattern="/^[a-zA-Z \W]*$/" class="form-input" type="text" value="@item.state">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group ">
+                                                            <label class="form-label"  for="txtzipcode">Zip/Postal Code</label>
+                                                            <input id="txtzipcode" data-parsley-trigger="change" required="" data-parsley-pattern="^[A-Z0-9]{6}(?:List)?$" class="form-input" type="text" value="@item.zipcode">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <hr>
+                                            <div class="update-block">
+                                                <div class="col-md-6">
+@if (user.AcountType == 1)
+{
+                                                    <a data-toggle="modal" href="#changepassword">Update Password?</a>
+
+}
+
+else {
+
+
+} </div>
+                                                <div class="col-md-6 text-right">
+                                                    <button onclick="window.location.href='/Admin/index'" class="btn btn-primary btn-back">Back</button>
+                                                    @if (user.AcountType == 1)
+                                                    {
+                                                        <button id="btnupdate"  class="btn btn-primary btn-update"> Update</button>
+                                                    }
+                                                    else
+                                                    {
+
+                                                        <button id="btnupdaste" class="btn btn-primary" disabled> Update</button>
+
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        @Html.Hidden("vendorid", item.vendorid)
+                                    </div>
+                                    <div class="tab-pane fade" id="upc" role="tabpanel" aria-labelledby="upc-tab">
+                                        <form class="upload-file ">
+                                            <p>Upload or drag.csv file here</p>
+                                            <button class="btn btn-secondary">UPLOAD</button>
+                                        </form>
+                                       
+                                        <hr>
+                                       
+
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+<div class="modal fade" id="changepassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0">
+                <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Password</label>
+                        <input type="password" class="form-control" id="txtpassword"  required="" data-parsley-minlength="4"
+    data-parsley-errors-container=".errorspannewpassinput"
+    data-parsley-required-message="Please enter your new password."
+    data-parsley-uppercase="1"
+    data-parsley-lowercase="1"
+    data-parsley-number="1"
+    data-parsley-special="1"
+    data-parsley-required  aria-describedby="emailHelp" placeholder="Password"/>
+  <span class="errorspannewpassinput"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Confirm Password</label>
+                        <input type="password" class="form-control"
+                               id="password2" placeholder="Confirm Password"
+    data-parsley-minlength="4"
+    data-parsley-errors-container=".errorspanconfirmnewpassinput"
+    data-parsley-required-message="Please re-enter your new password."
+    data-parsley-equalto="#txtpassword"
+    data-parsley-required />
+  <span class="errorspanconfirmnewpassinput"></span>
+                    </div>
+                </div>
+                <div class="modal-footer border-top-0 d-flex">
+                    <button type="button" id="btnpasswordsave" onclick="ChangePassword()" class="btn btn-success">Save</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-label="Close">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+    @*<div class="modal fade" id="changepassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header border-bottom-0">
+                            <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="form-group"></div>
+                            <input type="password" onkeyup="checkPasswordcomparision()" class="form-control" id="txtpassword" aria-describedby="emailHelp" placeholder="Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" onkeyup="checkPasswordcomparision()" class="form-control" id="txtconfirmpassword" placeholder="Confirm Password">
+
+                            <div class="modal-footer border-top-0 d-flex justify-content-center">
+                                <button type="button" onclick="ChangePassword()" class="btn btn-success">Submit</button>
+                                <button type="button" class="btn btn-secondary">Cancel</button>
+                            </div>
+                         </div>
+
+
+                    </div>
+
+
+                </div>
+
+        </div>*@
+
+    @section FooterScripts{
+
+        <script src="~/scripts/PageJS/Admin.js"></script>
+
+    }

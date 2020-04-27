@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "ANC Vendor Connect - User Login ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<section class="bg-login">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 mx-auto card border-0">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pt-5 pb-3">
+                        <div class="form_login_parent bg-white text-center pt-4 pb-4 pl-3 pr-3">
+                            <form id="frmlogin"  onsubmit="return captchvalidate()" action="/Login/login" enctype="multipart/form-data" method="post">
+
+                                <h1 class="" style="color: black">Sign In</h1>
+                                <input type="email" class="form-control" placeholder="Email Address" name="email" data-parsley-trigger="change" required="" data-parsley-errors-container="#error-container1">
+                                <label id="error-container1"></label>
+                                <input type="password" name="password" placeholder="Password" required="" data-parsley-errors-container="#error-container">
+                                <label id="error-container"></label>   <div class="w-75 mx-auto">
+                                    <div id="lgcaptcha">
+                                        @*<div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdfpOUUAAAAALGvDyZ1ZqLHwNf7CzlHsRdNf04m"> </div>*@
+                                        <div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdcXOcUAAAAACrmT3qYDM0-A9Yc0pwIVS8uhCwz"> </div>
+                                        <p id="lgcaptcha-error"></p>
+                                    </div>
+                                </div>
+
+                                <p class="mt-3"><a href="@Url.Action("ForgetPassword", "login")">Forgot your password?</a></p>
+                                <button id="btnsubmit" type="submit" class="mt-3" style="cursor: pointer;">Sign In</button>
+                                </form>
+                            <p hidden id="returnip">@ViewBag.returnip</p>
+</div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pt-5 pb-3 media" style="background-color: #1f74bf;">
+                        <div class="signup_right_parent text-center pt-4 pb-4 pl-3 pr-3 d-flex align-items-center flex-column align-self-center">
+                            <div class="w-50 mx-auto">
+                                <a href="/login" class="mt-4">
+                                    <img src="./Content/images/logn.png" alt="" class="w-100">
+                                </a>
+                            </div>
+                            <h2 class="text-white mt-4">VENDOR CONNECT</h2>
+                            <p class="text-white mt-4">Enter your VENDOR details and start journey with us</p>
+                            <button class="ghost mt-4" id="btnNext">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p id="message" hidden >@ViewBag.message</p>
+    <p id="isvalid" hidden>@ViewBag.isvalid</p>
+</section>
+@*<section class="bg-login">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 mx-auto card border-0">
+                <div class="row">
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pt-5 pb-3">
+                        <div class="form_login_parent bg-white text-center pt-4 pb-4 pl-3 pr-3">
+                            <form id="frmlogin" onsubmit="return  captchvalidate();" action="/Login/login" enctype="multipart/form-data" method="post">
+
+                                <h1 class="" style="color: black">Sign In</h1>
+                                <input type="email" class="form-control" placeholder="Email Address" name="email" data-parsley-trigger="change" required="" data-parsley-errors-container="#error-container1">
+                                <label id="error-container1"></label>
+                                <input type="password" name="password" placeholder="Password" required="" data-parsley-errors-container="#error-container">
+                                <label id="error-container"></label>   <div class="w-75 mx-auto">
+                                    <div id="lgcaptcha">
+                                        <div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdfpOUUAAAAALGvDyZ1ZqLHwNf7CzlHsRdNf04m"> </div>
+                                        @*<div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdcXOcUAAAAACrmT3qYDM0-A9Yc0pwIVS8uhCwz"> </div>
+                                        <p id="lgcaptcha-error"></p>
+                                    </div>
+                                </div>
+
+                                <p class="mt-3"><a href="Url.Action("ForgetPassword", "login")">Forgot your password?</a></p>
+                                <button id="btnsubmit" type="submit" class="mt-3">Sign In</button>
+                                </form>
+                            <p hidden id="returnip">ViewBag.returnip</p>
+</div>
+                    </div>
+
+                    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pt-5 pb-3 media" style="background-color: #1f74bf;">
+                        <div class="signup_right_parent text-center pt-4 pb-4 pl-3 pr-3 d-flex align-items-center flex-column align-self-center">
+                            <div class="w-50 mx-auto">
+                                <a href="/login" class="mt-4">
+                                    <img src="./Content/images/logn.png" alt="" class="w-100">
+                                </a>
+                            </div>
+                            <h2 class="text-white mt-4">VENDOR CONNECT</h2>
+                            <p class="text-white mt-4">Enter your VENDOR details and start journey with us</p>
+                            <button class="ghost mt-4" id="btnNext">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p id="message" hidden >iewBag.message</p>
+    <p id="isvalid" hiddenViewBag.isvalid</p>
+</section>*@
+
+
+
+@section FooterScripts{
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<script src="~/scripts/PageJS/Login.js"></script>
+}
+
+        
+
+
+
+     
+
+
+
+@*<center>  <h2>wellcome to Anc Portal</h2>  </center>
+
+<br />
+<br />
+<br />
+<center>
+    <form  action="/Login/Login" enctype="multipart/form-data" method="post">
+        <input type="text" id="txtuserid" name="email" placeholder="username / Email" />
+        <br>
+        <input type="password" id="txtPassword" name="password" placeholder="Password" />
+        <br>
+        <h6>Forget Password</h6>
+        <input type="submit" id="btnlogin" value="Login" />
+    </form>
+
+</center>*@

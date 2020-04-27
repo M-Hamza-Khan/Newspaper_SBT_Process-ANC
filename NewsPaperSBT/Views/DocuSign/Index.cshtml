@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "ANC Vendor Connect - Further Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <!-- ================== HEADER LOGO START ================== -->
+    <div class="row">
+        <div class="logo-header">
+            <a href="/vendor-info-step-1">
+                <img src="../assets/images/step-logo.png" alt="">
+            </a>
+        </div>
+    </div>
+    <!-- ================== HEADER LOGO END ================== -->
+    <!-- ================== BANNER START ================== -->
+    <div class="row">
+        <div class="banner-bg"></div>
+    </div>
+    <!-- ================== BANNER END ================== -->
+    <!-- ================== VENDOR INFO BLOCK START ================== -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="vendor-info-block">
+                    <div class="row m-0">
+                        <div class="col-sm-4 p-0 sm-width-100">
+                            <div class="left-panel">
+                                <div class="step-block completed active">
+                                    <p class="step-circle">1</p>
+                                    <div class="step-content">
+                                        <h2>Vendor information</h2>
+                                        <p>Vendor name,  contact name & more</p>
+                                    </div>
+                                </div>
+                                <div class="step-block active">
+                                    <p class="step-circle">2</p>
+                                    <div class="step-content">
+                                        <h2>Further Information</h2>
+                                        <p>Display contract, allow for printing & more</p>
+                                    </div>
+                                </div>
+                                <div class="step-block">
+                                    <p class="step-circle">3</p>
+                                    <div class="step-content">
+                                        <h2>Finance </h2>
+                                        <p>Further information & more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 p-0 sm-width-100">
+                            <div class="right-panel">
+                                <h1>Further Information</h1>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                </p>
+                                <div class="checkbox chkterms">
+                                    <label class="d-block">
+                                        <input type="checkbox" id="chkterms" name="optionsCheckboxes" checked><span class="checkbox-material"><span class="check"></span></span>
+                                        <input type="text" class="form-control" id="txtName" placeholder="Your Name" disabled="disabled"/>
+                                        agree to terms & conditions.
+                                    </label>
+                                    <div class="dual-btn">
+                                        <button id="btnprintview" class="btn btn-primary btn-black"><i class="fa fa-print"></i> Print</button>
+                                        <button id="btndownload" class="btn btn-primary btn-black ml-2"><i class="fa fa-download"></i> Download</button>
+                                    </div>
+                                </div>
+
+                                <div class="pdf-reader">
+                                    <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+
+
+                                    <div class="pdfheader">
+                                        @*<button hidden class="cr1" id="zoomin">+</button>
+                                        <button  hidden class="cr1" id="zoomOut">-</button>*@
+                                        <button class="cr1" id="prev">Previous</button>
+                                        <button class="cr1" id="next">Next</button>
+                                        &nbsp; &nbsp;
+                                        <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                                    </div>
+
+                                    <canvas id="the-canvas"></canvas>
+                                </div>
+                               
+                                <div class="col-md-12 p-0 text-right">
+                                    <div class="text-right mt-4">
+
+                                    </div>
+                                    <hr />
+                                    <p hidden id="versionid"></p>
+                                    <button type="button" class="btn btn-primary" id="btnsubmit">Next</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @section FooterScripts{
+            <script src="~/scripts/PageJS/Pdfjs.js"></script>
+
+                <script src="~/scripts/PageJS/Docusign.js"></script>
+
+            }
+
+            @*<div class="container-fluid">
+                <!-- ================== HEADER LOGO START ================== -->
+                <div class="row">
+                    <div class="logo-header">
+                        <a href="/vendor-info-step-1">
+                            <img src="../assets/images/step-logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <!-- ================== HEADER LOGO END ================== -->
+                <!-- ================== BANNER START ================== -->
+                <div class="row">
+                    <div class="banner-bg"></div>
+                </div>
+                <!-- ================== BANNER END ================== -->
+                <!-- ================== VENDOR INFO BLOCK START ================== -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="vendor-info-block">
+                                <div class="row m-0">
+                                    <div class="col-sm-4 p-0 sm-width-100">
+                                        <div class="left-panel">
+                                            <div class="step-block completed active">
+                                                <p class="step-circle">1</p>
+                                                <div class="step-content">
+                                                    <h2>Vendor information</h2>
+                                                    <p>Vendor name,  contact name & more</p>
+                                                </div>
+                                            </div>
+                                            <div class="step-block active">
+                                                <p class="step-circle">2</p>
+                                                <div class="step-content">
+                                                    <h2>Further Information</h2>
+                                                    <p>Display contract, allow for printing & more</p>
+                                                </div>
+                                            </div>
+                                            <div class="step-block">
+                                                <p class="step-circle">3</p>
+                                                <div class="step-content">
+                                                    <h2>Finance </h2>
+                                                    <p>Further information & more</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8 p-0 sm-width-100">
+                                        <div class="right-panel">
+                                            <h1>Further Information</h1>
+                                            <div>
+                                                <div class="docu-sign">
+                                                    <div class="doc-block">
+                                                        <iframe id="dswpf" src="https://ca.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=f8727cf9-45b8-4ed4-81ad-10951b743342&env=ca&acct=b56e140a-770b-48eb-93d6-139b188bf8e5&v=2" style="height:291px;width:100%" ></iframe>
+                                                    </div>
+                                                </div><br />
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <br/>
+                                                <hr>
+
+
+                                                <div class="col-md-12 p-0 text-right">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox"  id="chkterms" class="custom-control" name="vehicle1" value="Bike">
+                                                        <label class="custom-control-label" for="customCheck1">I agree to terms</label>
+                                                    </div>
+                                                    <button type="button" class="btn btn-primary" id="btnsubmit">Next</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+            @*@section FooterScripts{
+                <script src="~/scripts/PageJS/Docusign.js"></script>
+
+                }*@
+

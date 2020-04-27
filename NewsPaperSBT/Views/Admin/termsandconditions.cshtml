@@ -1,0 +1,89 @@
+﻿
+@{
+    ViewBag.Title = "ANC Vendor Connect - Add Terms And Conditions";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Terms and Conditions</h2>
+<hr />
+<br />
+<style>
+    #btnupload{
+    
+    margin-left:5px;
+    }
+      #uploader{
+    
+    margin-bottom:15px;
+    }
+
+</style>
+
+@using (Html.BeginForm("termsandconditions", "Admin", FormMethod.Post,new { enctype = "multipart/form-data", onsubmit = "validatefile()" }))
+{
+    <input type="file"  data-parsley-fileextension='pdf' name="file" id="file" class="button1" /><br><br>
+    <input type="submit" id="btnupload" class="button1" onclick = "return validatefile();"  value="submit" />
+    <br><br>
+    
+}
+
+
+<div class="col-sm-12">
+    <div class="tbl-section">
+        <div class="table-responsive">
+            
+                        <div class="col-sm-8v float-right">
+                            <div class="form-group">
+                               
+                                <input id="termsrchinput" type="text" class="form-control" placeholder="Search User">
+                                <i class="fa fa-search sc1"></i>
+                            </div>
+                        </div>
+                   
+            <table id="tblterms" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">version id</th>
+                        <th scope="col">FileName</th>
+                        <th scope="col">View</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tblbdyterms"></tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+@*<div class="container">
+    <form id="frmupload" >
+
+        <div class="row" id="uploader">
+            <input id="fileInput" type="file" name="file" multiple>
+        </div>
+        <div class="row">
+
+            <input type="text" id="txtversion" value="TermsandConditionV2" disabled class="form-input" />
+
+
+
+
+            <input type="submit" id="btnupload" value="submit" class="btn-success" />
+
+        </div>
+    </form>
+
+    </div>*@
+
+
+
+
+
+
+@section FooterScripts{
+
+<script src="~/scripts/dataTables.pageLoadMore.min.js"></script>
+<script src="~/scripts/datatables.min.js"></script>
+    <script src="~/scripts/PageJS/terms.js"></script>
+
+}

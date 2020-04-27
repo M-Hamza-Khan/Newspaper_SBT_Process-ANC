@@ -1,0 +1,912 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NewsPaperSBTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayContract" Type="nvarchar" MaxLength="50" />
+          <Property Name="AllowForPrintingAndDownload" Type="bit" />
+          <Property Name="IAgreeToTearms" Type="bit" />
+          <Property Name="DateToEnter" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Docusign">
+          <Key>
+            <PropertyRef Name="docusignid" />
+          </Key>
+          <Property Name="docusignid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="userid" Type="int" />
+          <Property Name="pdfVersion" Type="nvarchar" MaxLength="50" />
+          <Property Name="createdDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="EmailSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SmtpHost" Type="nvarchar" MaxLength="50" />
+          <Property Name="SmtpPort" Type="int" />
+          <Property Name="SmtpEnableSsl" Type="bit" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="50" />
+          <Property Name="DisplayName" Type="varchar" MaxLength="50" />
+          <Property Name="ReplyEmail" Type="varchar" MaxLength="50" />
+          <Property Name="username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmailTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Template" Type="nvarchar" MaxLength="50" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" />
+          <Property Name="Body" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="LoginAttempt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BrowserID" Type="nvarchar" MaxLength="50" />
+          <Property Name="AttemptDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleDesc" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="terms">
+          <Key>
+            <PropertyRef Name="versionid" />
+          </Key>
+          <Property Name="versionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="datecreated" Type="datetime" />
+          <Property Name="isactive" Type="bit" />
+          <Property Name="datemodified" Type="date" />
+          <Property Name="pdfsrc" Type="varbinary(max)" />
+          <Property Name="fileName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="UPC">
+          <Key>
+            <PropertyRef Name="UPCID" />
+          </Key>
+          <Property Name="UPCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UPCNumber" Type="varchar" MaxLength="50" />
+          <Property Name="ChainName" Type="nvarchar(max)" />
+          <Property Name="BannerName" Type="nvarchar(max)" />
+          <Property Name="StoreNumber" Type="nvarchar(max)" />
+          <Property Name="RetailPrice" Type="float" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="DayOfWeek" Type="varchar" MaxLength="50" />
+          <Property Name="VendorID" Type="int" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="UPCMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UPC_Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="isrecom" Type="bit" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="AcountType" Type="int" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="date" />
+          <Property Name="tokken" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'NewsPaperSBT.dbo.User_Test' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="User_Test">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fullname" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="AcountType" Type="int" />
+          <Property Name="isActive" Type="bit" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="date" />
+          <Property Name="tokken" Type="varchar" MaxLength="50" />
+          <Property Name="FullName_1" Type="varbinary(max)" />
+          <Property Name="FullName_2" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="UserRegion">
+          <Key>
+            <PropertyRef Name="Regionid" />
+          </Key>
+          <Property Name="Regionid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Userid" Type="int" Nullable="false" />
+          <Property Name="IP" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Isblock" Type="bit" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="Vendorid" />
+          </Key>
+          <Property Name="Vendorid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Contactname" Type="varchar" MaxLength="50" />
+          <Property Name="VendorName" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="250" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="Street" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" />
+          <Property Name="ContractDate" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="Approvedby" Type="varchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="ModifiedDate" Type="datetime" />
+          <Property Name="DeletedDate" Type="datetime" />
+          <Property Name="Userid" Type="int" />
+          <Property Name="upccode" Type="varchar" MaxLength="100" />
+          <Property Name="DocumentSign" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Vendor_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="Vendor1" Type="Self.Vendor" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="Vendorid" />
+            </Principal>
+            <Dependent Role="Vendor1">
+              <PropertyRef Name="Vendorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_checkBlockedip" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sessionid" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_checkisuserblocked" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sessionid" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_CheckUpcVerfication" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar(max)" Mode="In" />
+          <Parameter Name="attempt" Type="int" Mode="In" />
+          <Parameter Name="browserid" Type="varchar(max)" Mode="In" />
+          <Parameter Name="Result" Type="varchar(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_CheckUpcVerficationnew" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Code" Type="varchar(max)" Mode="In" />
+          <Parameter Name="attempt" Type="int" Mode="In" />
+          <Parameter Name="browserid" Type="varchar(max)" Mode="In" />
+          <Parameter Name="StatusLog" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="Sp_GetAllUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_GetAllUsersByUserId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Sp_gettermsandconditions" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_gettermsandconditionsfiles" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_systemusers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Sp_systemusersbyid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_UpdateVendor" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="VendorId" Type="int" Mode="In" />
+          <Parameter Name="VendorName" Type="varchar" Mode="In" />
+          <Parameter Name="ContactName" Type="varchar" Mode="In" />
+          <Parameter Name="Email" Type="varchar" Mode="In" />
+          <Parameter Name="Phone" Type="varchar" Mode="In" />
+          <Parameter Name="Street" Type="varchar" Mode="In" />
+          <Parameter Name="City" Type="varchar" Mode="In" />
+          <Parameter Name="State" Type="varchar" Mode="In" />
+          <Parameter Name="ZipCode" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_userProfileStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="UpadteUserAcountType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="uid" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="NewsPaperSBTModelStoreContainer">
+          <EntitySet Name="Contract" EntityType="Self.Contract" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Docusign" EntityType="Self.Docusign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailSettings" EntityType="Self.EmailSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailTemplates" EntityType="Self.EmailTemplates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoginAttempt" EntityType="Self.LoginAttempt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="terms" EntityType="Self.terms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UPC" EntityType="Self.UPC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UPCMaster" EntityType="Self.UPCMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRegion" EntityType="Self.UserRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Test" EntityType="Self.User_Test" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [User_Test].[Userid] AS [Userid], 
+    [User_Test].[Fullname] AS [Fullname], 
+    [User_Test].[Email] AS [Email], 
+    [User_Test].[Password] AS [Password], 
+    [User_Test].[AcountType] AS [AcountType], 
+    [User_Test].[isActive] AS [isActive], 
+    [User_Test].[CreatedDate] AS [CreatedDate], 
+    [User_Test].[ModifiedDate] AS [ModifiedDate], 
+    [User_Test].[DeletedDate] AS [DeletedDate], 
+    [User_Test].[tokken] AS [tokken], 
+    [User_Test].[FullName_1] AS [FullName_1], 
+    [User_Test].[FullName_2] AS [FullName_2]
+    FROM [dbo].[User_Test] AS [User_Test]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Vendor_Vendor" Association="Self.FK_Vendor_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Vendor1" EntitySet="Vendor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NewsPaperSBTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="NewsPaperSBTEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Contract" EntityType="NewsPaperSBTModel.Contract" />
+          <EntitySet Name="LoginAttempt" EntityType="NewsPaperSBTModel.LoginAttempt" />
+          <EntitySet Name="Roles" EntityType="NewsPaperSBTModel.Roles" />
+          <EntitySet Name="sysdiagrams" EntityType="NewsPaperSBTModel.sysdiagrams" />
+          <EntitySet Name="UPC" EntityType="NewsPaperSBTModel.UPC" />
+          <EntitySet Name="UPCMaster" EntityType="NewsPaperSBTModel.UPCMaster" />
+          <EntitySet Name="user" EntityType="NewsPaperSBTModel.user" />
+          <EntitySet Name="UserRegion" EntityType="NewsPaperSBTModel.UserRegion" />
+          <EntitySet Name="User_Test" EntityType="NewsPaperSBTModel.User_Test" />
+          <FunctionImport Name="sp_checkBlockedip" ReturnType="Collection(Int32)">
+          <Parameter Name="sessionid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_checkisuserblocked" ReturnType="Collection(Int32)">
+          <Parameter Name="sessionid" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_GetAllUsersByUserId" ReturnType="Collection(NewsPaperSBTModel.Sp_GetAllUsersByUserId_Result)">
+          <Parameter Name="UserId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Sp_systemusers" ReturnType="Collection(NewsPaperSBTModel.Sp_systemusers_Result)" />
+          <FunctionImport Name="Sp_systemusersbyid" ReturnType="Collection(NewsPaperSBTModel.Sp_systemusersbyid_Result)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_UpdateVendor">
+            <Parameter Name="VendorId" Mode="In" Type="Int32" />
+            <Parameter Name="VendorName" Mode="In" Type="String" />
+            <Parameter Name="ContactName" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="Phone" Mode="In" Type="String" />
+            <Parameter Name="Street" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="State" Mode="In" Type="String" />
+            <Parameter Name="ZipCode" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="UpadteUserAcountType">
+          <Parameter Name="uid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_userProfileStatus" ReturnType="Collection(String)">
+          <Parameter Name="userid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CheckUpcVerficationnew" ReturnType="Collection(String)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="attempt" Mode="In" Type="Int32" />
+            <Parameter Name="browserid" Mode="In" Type="String" />
+            <Parameter Name="StatusLog" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_CheckUpcVerfication" ReturnType="Collection(String)">
+            <Parameter Name="Code" Mode="In" Type="String" />
+            <Parameter Name="attempt" Mode="In" Type="Int32" />
+            <Parameter Name="browserid" Mode="In" Type="String" />
+            <Parameter Name="Result" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Vendor" EntityType="NewsPaperSBTModel.Vendor" />
+          <AssociationSet Name="FK_Vendor_Vendor" Association="NewsPaperSBTModel.FK_Vendor_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="Vendor1" EntitySet="Vendor" />
+          </AssociationSet>
+          <EntitySet Name="terms" EntityType="NewsPaperSBTModel.terms" />
+          <EntitySet Name="Docusign" EntityType="NewsPaperSBTModel.Docusign" />
+          <FunctionImport Name="Sp_GetAllUsers" ReturnType="Collection(NewsPaperSBTModel.Sp_GetAllUsers_Result)" />
+          <EntitySet Name="EmailSettings" EntityType="NewsPaperSBTModel.EmailSettings" />
+          <EntitySet Name="EmailTemplates" EntityType="NewsPaperSBTModel.EmailTemplates" />
+          <FunctionImport Name="Sp_gettermsandconditions" ReturnType="Collection(NewsPaperSBTModel.Sp_gettermsandconditions_Result)" />
+          <FunctionImport Name="Sp_gettermsandconditionsfiles" ReturnType="Collection(NewsPaperSBTModel.Sp_gettermsandconditionsfiles_Result)" />
+        </EntityContainer>
+        <EntityType Name="Contract">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayContract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AllowForPrintingAndDownload" Type="Boolean" />
+          <Property Name="IAgreeToTearms" Type="Boolean" />
+          <Property Name="DateToEnter" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LoginAttempt">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BrowserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AttemptDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="UPC">
+          <Key>
+            <PropertyRef Name="UPCID" />
+          </Key>
+          <Property Name="UPCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UPCNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ChainName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BannerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoreNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RetailPrice" Type="Double" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DayOfWeek" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorID" Type="Int32" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="UPCMaster">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UPC_Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isrecom" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AcountType" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <Property Name="tokken" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="UserRegion">
+          <Key>
+            <PropertyRef Name="Regionid" />
+          </Key>
+          <Property Name="Regionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Userid" Type="Int32" Nullable="false" />
+          <Property Name="IP" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Isblock" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="User_Test">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fullname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AcountType" Type="Int32" />
+          <Property Name="isActive" Type="Boolean" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="0" />
+          <Property Name="tokken" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FullName_1" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="FullName_2" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <ComplexType Name="Sp_GetAllUsersByUserId_Result">
+          <Property Type="Int32" Name="userid" Nullable="false" />
+          <Property Type="String" Name="name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="acounttype" Nullable="true" />
+          <Property Type="Int32" Name="vendorid" Nullable="true" />
+          <Property Type="Int32" Name="AccountTypeid" Nullable="true" />
+          <Property Type="String" Name="roledesc" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="userEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="vendorname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="contactname" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="city" Nullable="true" MaxLength="250" />
+          <Property Type="String" Name="state" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="street" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="vndEmail" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="zipcode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="phone" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="Sp_systemusers_Result">
+          <Property Type="Int32" Name="Userid" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="AccountTypeid" Nullable="true" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_systemusersbyid_Result">
+          <Property Type="Int32" Name="Userid" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="AccountTypeid" Nullable="true" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="Vendorid" />
+          </Key>
+          <Property Name="Vendorid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Contactname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContractDate" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="Approvedby" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+          <Property Name="DeletedDate" Type="DateTime" Precision="3" />
+          <Property Name="Userid" Type="Int32" />
+          <Property Name="upccode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DocumentSign" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Vendor1" Relationship="NewsPaperSBTModel.FK_Vendor_Vendor" FromRole="Vendor" ToRole="Vendor1" />
+          <NavigationProperty Name="Vendor2" Relationship="NewsPaperSBTModel.FK_Vendor_Vendor" FromRole="Vendor1" ToRole="Vendor" />
+        </EntityType>
+        <Association Name="FK_Vendor_Vendor">
+          <End Type="NewsPaperSBTModel.Vendor" Role="Vendor" Multiplicity="1" />
+          <End Type="NewsPaperSBTModel.Vendor" Role="Vendor1" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="Vendorid" />
+            </Principal>
+            <Dependent Role="Vendor1">
+              <PropertyRef Name="Vendorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="terms">
+          <Key>
+            <PropertyRef Name="versionid" />
+          </Key>
+          <Property Name="versionid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="datecreated" Type="DateTime" Precision="3" />
+          <Property Name="isactive" Type="Boolean" />
+          <Property Name="datemodified" Type="DateTime" Precision="0" />
+          <Property Name="pdfsrc" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Docusign">
+          <Key>
+            <PropertyRef Name="docusignid" />
+          </Key>
+          <Property Name="docusignid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="pdfVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="createdDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <ComplexType Name="Sp_GetAllUsers_Result">
+          <Property Type="Int32" Name="Userid" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Password" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="AccountTypeid" Nullable="true" />
+          <Property Type="String" Name="Role" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="useremail" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="VendorName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ContactName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="State" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Street" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="vndEmail" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Phone" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+          <Property Type="String" Name="DocumentSigned" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Version" Nullable="true" MaxLength="30" />
+        </ComplexType>
+        <EntityType Name="EmailSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SmtpHost" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SmtpPort" Type="Int32" />
+          <Property Name="SmtpEnableSsl" Type="Boolean" />
+          <Property Name="EmailAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ReplyEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="EmailTemplates">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Template" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="Sp_gettermsandconditions_Result">
+          <Property Type="Int32" Name="versionid" Nullable="true" />
+          <Property Type="DateTime" Name="datecreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dateModified" Nullable="true" Precision="23" />
+          <Property Type="String" Name="fileName" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Sp_gettermsandconditionsfiles_Result">
+          <Property Type="Int32" Name="versionid" Nullable="true" />
+          <Property Type="DateTime" Name="datecreated" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="dateModified" Nullable="true" Precision="23" />
+          <Property Type="String" Name="fileName" Nullable="true" MaxLength="30" />
+          <Property Type="Binary" Name="pdfsrc" Nullable="true" />
+          <Property Type="Boolean" Name="isActive" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NewsPaperSBTModelStoreContainer" CdmEntityContainer="NewsPaperSBTEntities" >
+          <EntitySetMapping Name="Contract">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.Contract">
+              <MappingFragment StoreEntitySet="Contract">
+                <ScalarProperty Name="DateToEnter" ColumnName="DateToEnter" />
+                <ScalarProperty Name="IAgreeToTearms" ColumnName="IAgreeToTearms" />
+                <ScalarProperty Name="AllowForPrintingAndDownload" ColumnName="AllowForPrintingAndDownload" />
+                <ScalarProperty Name="DisplayContract" ColumnName="DisplayContract" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginAttempt">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.LoginAttempt">
+              <MappingFragment StoreEntitySet="LoginAttempt">
+                <ScalarProperty Name="AttemptDate" ColumnName="AttemptDate" />
+                <ScalarProperty Name="BrowserID" ColumnName="BrowserID" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UPC">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.UPC">
+              <MappingFragment StoreEntitySet="UPC">
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="DayOfWeek" ColumnName="DayOfWeek" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="RetailPrice" ColumnName="RetailPrice" />
+                <ScalarProperty Name="StoreNumber" ColumnName="StoreNumber" />
+                <ScalarProperty Name="BannerName" ColumnName="BannerName" />
+                <ScalarProperty Name="ChainName" ColumnName="ChainName" />
+                <ScalarProperty Name="UPCNumber" ColumnName="UPCNumber" />
+                <ScalarProperty Name="UPCID" ColumnName="UPCID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UPCMaster">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.UPCMaster">
+              <MappingFragment StoreEntitySet="UPCMaster">
+                <ScalarProperty Name="isrecom" ColumnName="isrecom" />
+                <ScalarProperty Name="UPC_Code" ColumnName="UPC_Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="tokken" ColumnName="tokken" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="AcountType" ColumnName="AcountType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRegion">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.UserRegion">
+              <MappingFragment StoreEntitySet="UserRegion">
+                <ScalarProperty Name="Isblock" ColumnName="Isblock" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Regionid" ColumnName="Regionid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Test">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.User_Test">
+              <MappingFragment StoreEntitySet="User_Test">
+                <ScalarProperty Name="FullName_2" ColumnName="FullName_2" />
+                <ScalarProperty Name="FullName_1" ColumnName="FullName_1" />
+                <ScalarProperty Name="tokken" ColumnName="tokken" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="AcountType" ColumnName="AcountType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fullname" ColumnName="Fullname" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_checkBlockedip" FunctionName="NewsPaperSBTModel.Store.sp_checkBlockedip" />
+          <FunctionImportMapping FunctionImportName="sp_checkisuserblocked" FunctionName="NewsPaperSBTModel.Store.sp_checkisuserblocked" />
+          <FunctionImportMapping FunctionImportName="Sp_GetAllUsersByUserId" FunctionName="NewsPaperSBTModel.Store.Sp_GetAllUsersByUserId">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewsPaperSBTModel.Sp_GetAllUsersByUserId_Result">
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="acounttype" ColumnName="acounttype" />
+                <ScalarProperty Name="vendorid" ColumnName="vendorid" />
+                <ScalarProperty Name="AccountTypeid" ColumnName="AccountTypeid" />
+                <ScalarProperty Name="roledesc" ColumnName="roledesc" />
+                <ScalarProperty Name="userEmail" ColumnName="userEmail" />
+                <ScalarProperty Name="vendorname" ColumnName="vendorname" />
+                <ScalarProperty Name="contactname" ColumnName="contactname" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="street" ColumnName="street" />
+                <ScalarProperty Name="vndEmail" ColumnName="vndEmail" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_systemusers" FunctionName="NewsPaperSBTModel.Store.Sp_systemusers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewsPaperSBTModel.Sp_systemusers_Result">
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AccountTypeid" ColumnName="AccountTypeid" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_systemusersbyid" FunctionName="NewsPaperSBTModel.Store.Sp_systemusersbyid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewsPaperSBTModel.Sp_systemusersbyid_Result">
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AccountTypeid" ColumnName="AccountTypeid" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_UpdateVendor" FunctionName="NewsPaperSBTModel.Store.sp_UpdateVendor" />
+          <FunctionImportMapping FunctionImportName="UpadteUserAcountType" FunctionName="NewsPaperSBTModel.Store.UpadteUserAcountType" />
+          <FunctionImportMapping FunctionImportName="sp_userProfileStatus" FunctionName="NewsPaperSBTModel.Store.sp_userProfileStatus" />
+          <FunctionImportMapping FunctionImportName="sp_CheckUpcVerficationnew" FunctionName="NewsPaperSBTModel.Store.sp_CheckUpcVerficationnew" />
+          <FunctionImportMapping FunctionImportName="sp_CheckUpcVerfication" FunctionName="NewsPaperSBTModel.Store.sp_CheckUpcVerfication" />
+          <EntitySetMapping Name="Vendor">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="DocumentSign" ColumnName="DocumentSign" />
+                <ScalarProperty Name="upccode" ColumnName="upccode" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="DeletedDate" ColumnName="DeletedDate" />
+                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Approvedby" ColumnName="Approvedby" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="Contactname" ColumnName="Contactname" />
+                <ScalarProperty Name="Vendorid" ColumnName="Vendorid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="terms">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.terms">
+              <MappingFragment StoreEntitySet="terms">
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="pdfsrc" ColumnName="pdfsrc" />
+                <ScalarProperty Name="datemodified" ColumnName="datemodified" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="versionid" ColumnName="versionid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Docusign">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.Docusign">
+              <MappingFragment StoreEntitySet="Docusign">
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="pdfVersion" ColumnName="pdfVersion" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="docusignid" ColumnName="docusignid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_GetAllUsers" FunctionName="NewsPaperSBTModel.Store.Sp_GetAllUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewsPaperSBTModel.Sp_GetAllUsers_Result">
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AccountTypeid" ColumnName="AccountTypeid" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="useremail" ColumnName="useremail" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="vndEmail" ColumnName="vndEmail" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="DocumentSigned" ColumnName="DocumentSigned" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="EmailSettings">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.EmailSettings">
+              <MappingFragment StoreEntitySet="EmailSettings">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ReplyEmail" ColumnName="ReplyEmail" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="SmtpEnableSsl" ColumnName="SmtpEnableSsl" />
+                <ScalarProperty Name="SmtpPort" ColumnName="SmtpPort" />
+                <ScalarProperty Name="SmtpHost" ColumnName="SmtpHost" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailTemplates">
+            <EntityTypeMapping TypeName="NewsPaperSBTModel.EmailTemplates">
+              <MappingFragment StoreEntitySet="EmailTemplates">
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Template" ColumnName="Template" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Sp_gettermsandconditions" FunctionName="NewsPaperSBTModel.Store.Sp_gettermsandconditions">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewsPaperSBTModel.Sp_gettermsandconditions_Result">
+                <ScalarProperty Name="versionid" ColumnName="versionid" />
+                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Sp_gettermsandconditionsfiles" FunctionName="NewsPaperSBTModel.Store.Sp_gettermsandconditionsfiles">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="NewsPaperSBTModel.Sp_gettermsandconditionsfiles_Result">
+                <ScalarProperty Name="versionid" ColumnName="versionid" />
+                <ScalarProperty Name="datecreated" ColumnName="datecreated" />
+                <ScalarProperty Name="dateModified" ColumnName="dateModified" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="pdfsrc" ColumnName="pdfsrc" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

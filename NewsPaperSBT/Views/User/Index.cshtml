@@ -1,0 +1,36 @@
+﻿
+
+<center>  <h3> Wellcome to ANC Portal</h3>  </center>  
+<br />
+<center>
+
+
+        <form>
+            <div class="form-row m-0">
+                <h3> Register User</h3>
+                <h6> Password Will send through your given Mail..</h6>
+
+                <div class="form-group col-md-12 pl-md-0 pr-md-0">
+                    <input type="text" class="form-control login-custm-form" id="txtfname" placeholder="First Name" onchange="ClearBorder()">
+                </div>
+                <div class="form-group col-md-12 pl-md-0 pr-md-0">
+                    <input type="text" class="form-control login-custm-form" id="txtlname" placeholder="Last Name" onchange="ClearBorder()">
+                </div>
+                <div class="form-group col-md-12 pl-md-0 pr-md-0">
+                    <input type="text" class="form-control login-custm-form" id="txtEmail" placeholder="Email" onchange="ClearBorder()">
+                </div>
+                <div class="g-recaptcha" data-expired-callback="expiredReCaptcha()" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdfpOUUAAAAALGvDyZ1ZqLHwNf7CzlHsRdNf04m">
+            </div>
+
+                    <input type="button"  class="btn-success btn-lg" id="btnNext" value="Next">
+                <p id="returnip" hidden > @ViewBag.returnip</p>
+            </div>
+        </form>
+
+</center>
+@section FooterScripts{
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+    <script src="~/scripts/PageJS/user.js"></script>
+
+}

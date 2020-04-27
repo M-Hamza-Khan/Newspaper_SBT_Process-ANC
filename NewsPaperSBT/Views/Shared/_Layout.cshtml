@@ -1,0 +1,78 @@
+﻿@{
+    var user = NewsPaperSBT.Models.Shared.NewspaperSBTSession.CurrentUser;
+
+ }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ================== Title ================== -->
+    <title>@ViewBag.Title </title>
+    <!-- ================== Favicon ================== -->
+    <link rel="shortcut icon" href="~/Content//images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- ================== Required meta tags ================== -->
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="-1">
+    <meta http-equiv="CACHE-CONTROL" content="NO-CACHE">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- ================== Bootstrap CSS ================== -->
+    <link rel="stylesheet" href="~/Content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/css/fixing.css">
+
+    <!-- ================== Font Family ================== -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900&display=swap" rel="stylesheet">
+    <!-- ================== Font Awesome and Icons ================== -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+    <!-- ================== Custom Css ================== -->
+    <link rel="stylesheet" href="~/Content/css/style.css">
+    <link href="~/Content/css/toastr.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="loader">
+        <img src="~/Content/images/loaderimg.png" />
+    </div>
+    <!-- ================== LOGIN AND SIGNUP STsART ================== -->
+   @if (user != null)
+   {
+    
+         Html.RenderPartial("_PartialViewHeader");
+   
+    }
+
+    @RenderBody()
+
+    @if (user != null)
+    {
+
+        Html.RenderPartial("_PartialViewFooter");
+
+    }
+    
+    <!-- ================== LOGIN AND SIGNUP END ================== -->
+    <!-- ================== Scripting ================== -->
+
+    <script src="~/scripts/jquery.min.js"></script>
+    <script src="~/scripts/popper.min.js"></script>
+    <script src="~/scripts/select2.min.js"></script>
+    <script src="~/scripts/PageJS/Layout.js"></script>
+    <script src="~/scripts/parsley.js"></script>
+    <script src="~/scripts/parsley.min.js"></script>
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/toastr.min.js"></script>
+
+    <script src="~/scripts/dx.all.js"></script>
+
+    <script src="~/scripts/PageJS/Layout.js"></script>
+    @if (IsSectionDefined("FooterScripts"))
+    {
+
+        @RenderSection("FooterScripts");
+    }
+    <script>
+    $(window).on("load", function () {
+    $('.loader').css("display", "none");
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿@{ var user = NewsPaperSBT.Models.Shared.NewspaperSBTSession.CurrentUser;}
+
+<style>
+    #profileImage {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: #512DA8;
+  font-size: 35px;
+  color: #fff;
+  text-align: center;
+  line-height: 150px;
+  margin: 20px 0;
+}
+</style>
+<div class="row">
+    <div class="logo-header">
+        <a href="/LOGIN/INDEX">
+            <img src="~/Content/images/step-logo.png" alt="">
+        </a>
+        @if (user != null)
+        {
+            @*<a href="#" onclick="SeesionLogout()" class="otplogout">Logout</a>*@
+            <div class="login-dropdown justify-content-end cl">
+
+                <span class="profile-info dropdown">
+                    <a href="" class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div id="profileImage"></div> @user.Fullname 
+                        <input id="username" value= @user.Fullname  hidden />
+                    </a>
+                    <ul class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(-6px, 29px, 0px); top: 0px; left: 0px; will-change: transform;">
+                        <li class="caret"></li>
+                        <li>
+                            <a  href="#" onclick="SeesionLogout()">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </span>
+            </div>
+            @*<ul class="nav navbar-nav ml-auto otplogout">
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">@user.Fullname</a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <a href="#" onclick="SeesionLogout()" class="dropdown-item">Logout</a>
+                    </ul>
+                </li>
+            </ul>*@
+        }
+    </div>
+</div>

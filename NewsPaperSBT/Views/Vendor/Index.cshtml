@@ -1,0 +1,248 @@
+﻿
+@{
+    ViewBag.Title = "ANC Vendor Connect - Vendor Information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="loader">
+    <img src="~/Content/images/loaderimg.png" />
+</div>
+<div class="row">
+    <div class="banner-bg"></div>
+</div>
+<!-- ================== BANNER END ================== -->
+<!-- ================== VENDOR INFO BLOCK START ================== -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="vendor-info-block">
+                <div class="row m-0">
+                    <div class="col-sm-4 p-0 sm-width-100">
+                        <div class="left-panel">
+                            <div class="step-block active">
+                                <p class="step-circle">1</p>
+                                <div class="step-content">
+                                    <h2>Vendor information</h2>
+                                    <p>Vendor name,  contact name & more</p>
+                                </div>
+                            </div>
+                            <div class="step-block">
+                                <p class="step-circle">2</p>
+                                <div class="step-content">
+                                    <h2>Further Information</h2>
+                                    <p>Display contract, allow for printing & more</p>
+                                </div>
+                            </div>
+                            <div class="step-block">
+                                <p class="step-circle">3</p>
+                                <div class="step-content">
+                                    <h2>Finance </h2>
+                                    <p>Further information & more</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-8 p-0 sm-width-100">
+                        <div class="right-panel">
+                            <h1>Vendor Information</h1>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                            <form id="frmvendor" action="#" data-parsley-validate="">
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" data-parsley-pattern="/^[a-zA-Z \W ]*$/" id="txtvendorname" data-parsley-trigger="change" placeholder="Vendor Name" required="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" data-parsley-pattern="/^[a-zA-Z \W ]*$/" id="txtcontactname" data-parsley-trigger="change" placeholder="Contact Name" required="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="email" class="form-control" onchange="CleaEmailHighlight()" id="txtemail" placeholder="Email Address" name="email" data-parsley-trigger="change" required="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input data-parsley-pattern="^[0-9]{10}(?:List)?$" parsley-type="phone" data-parsley-trigger="change" required="" data-parsley-required-message="invalid Phone Number," value="" class="form-control" id="txtphone" placeholder="Phone Number">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input type="text" class="form-control" data-parsley-trigger="change" id="txtstreet" placeholder="Street" required="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input type="text" class="form-control" data-parsley-trigger="change" id="txtstreet1" placeholder="Street2" required="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <input type="text" class="form-control" data-parsley-trigger="change" data-parsley-pattern="/^[a-zA-Z \W]*$/" id="txtcity" placeholder="City" required="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" data-parsley-trigger="change" data-parsley-pattern="/^[a-zA-Z \W]*$/" id="txtstate" placeholder="State/Province" required="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" data-parsley-pattern="^[A-Z0-9]{6}(?:List)?$" data-parsley-trigger="change" id="txtzipcode" data-parsley-minlength="6" data-parsley-maxlength="6" placeholder="Zip/Postal Code" required="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <input type="text" class="form-control" id="txtUpc" data-parsley-trigger="change" data-parsley-pattern="/^[\d\-]+$/" placeholder="UPC CODE" name="s" required="">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <p style="font-size: 14px;">As security measure please enter ONE of your companies valid UPC's for validation</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6 d-flex text-left">
+                                        <div id="lgcaptcha">
+                                            <div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdcXOcUAAAAACrmT3qYDM0-A9Yc0pwIVS8uhCwz"> </div>
+                                            @*<div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdfpOUUAAAAALGvDyZ1ZqLHwNf7CzlHsRdNf04m"> </div>*@
+                                            <p id="lgcaptcha-error"></p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 text-right">
+                                        <button type="button" id="Cancel" onclick="CancelPage();" class="btn btn-primary btn-back mr-1">Cancel</button>
+                                        <button type="submit" class="btn btn-primary" id="btnNext">Next</button>
+                                        <span id="returnip" hidden>@ViewBag.returnip </span>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ================== VENDOR INFO BLOCK END ================== -->
+        <!-- ================== FOOTER START ================== -->
+        <!-- ================== FOOTER END ================== -->
+    </div>
+</div>
+@*<div class="row">
+        <div class="banner-bg"></div>
+    </div>
+    <!-- ================== BANNER END ================== -->
+    <!-- ================== VENDOR INFO BLOCK START ================== -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="vendor-info-block">
+                    <div class="row m-0">
+                        <div class="col-sm-4 p-0 sm-width-100">
+                            <div class="left-panel">
+                                <div class="step-block active">
+                                    <p class="step-circle">1</p>
+                                    <div class="step-content">
+                                        <h2>Vendor information</h2>
+                                        <p>Vendor name,  contact name & more</p>
+                                    </div>
+                                </div>
+                                <div class="step-block">
+                                    <p class="step-circle">2</p>
+                                    <div class="step-content">
+                                        <h2>Further Information</h2>
+                                        <p>Display contract, allow for printing & more</p>
+                                    </div>
+                                </div>
+                                <div class="step-block">
+                                    <p class="step-circle">3</p>
+                                    <div class="step-content">
+                                        <h2>Finance </h2>
+                                        <p>Further information & more</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-8 p-0 sm-width-100">
+                            <div class="right-panel">
+                                <h1>Vendor Information</h1>
+                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, </p>
+                                <form id="frmvendor" action="#" data-parsley-validate="">
+                                    <div class="form-row">
+
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" data-parsley-pattern="/^[a-zA-Z ]*$/" id="txtvendorname" data-parsley-trigger="change" placeholder="Vendor Name" required="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control"  data-parsley-pattern="/^[a-zA-Z ]*$/" id="txtcontactname" data-parsley-trigger="change" placeholder="Contact Name" required="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="email" class="form-control"  id="txtemail" placeholder="Email Address" name="email" data-parsley-trigger="change" required="">
+
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="tel" name="phone" data-parsley-trigger="change" data-parsley-pattern="^[0-9]{10}(?:List)?$" data-parsley-required-message="invalid Phone Number," data-parsley-maxlength="10"   value="" class="form-control" id="txtphone" placeholder="Phone Number" required="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" data-parsley-trigger="change"  data-parsley-pattern="^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$" id="txtstreet" placeholder="Street" required="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" data-parsley-trigger="change"  data-parsley-pattern="/^[a-zA-Z ]*$/"  id="txtcity" placeholder="City" required="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" data-parsley-trigger="change"  data-parsley-pattern="/^[a-zA-Z ]*$/" id="txtstate" placeholder="State/Province" required="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="number" class="form-control"   data-parsley-pattern="^[A-Z0-9]{6}(?:List)?$"
+                                                   data-parsley-trigger="change" id="txtzipcode" placeholder="Zip/Postal Code" required="">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <input type="text" class="form-control" id="txtUpc" placeholder="UPC CODE" name="s" data-parsley-trigger="change" required="">
+
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <p style="font-size: 14px;">As security measure please enter ONE of your companies valid UPC's for validation</p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-8  justify-content-center d-flex text-right">
+                                            <div id="lgcaptcha">
+                                                <div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdcXOcUAAAAACrmT3qYDM0-A9Yc0pwIVS8uhCwz"> </div>
+
+                                                 @*<div class="g-recaptcha" data-expired-callback="expiredReCaptcha" data-callback="verifyReCaptcha" lang="en" data-sitekey="6LdfpOUUAAAAALGvDyZ1ZqLHwNf7CzlHsRdNf04m"> </div>
+                                                <p id="lgcaptcha-error"></p
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md-4 justify-content-center d-flex align-items-center text-left">
+                                            <button type="submit" class="btn btn-primary" id="btnNext">Next</button>
+                                            <span id="returnip" hidden>ViewBag.returnip </span>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ================== VENDOR INFO BLOCK END ================== -->
+            <!-- ================== FOOTER START ================== -->
+
+            <!-- ================== FOOTER END ================== -->
+        </div>
+    </div>*@
+@section FooterScripts{
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="~/scripts/PageJS/Vendor.js"></script>
+}
+
+@*<center>*@
+
+@*<form>
+        <div class="form-row m-0">
+            <h3> Vendor Information..</h3>
+        3
+
+            <div class="form-group col-md-12 pl-md-0 pr-md-0">
+                <input type="text" class="form-control login-custm-form" id="txtcontactname" placeholder="Contact Name" onchange="ClearBorder()">
+            </div>
+            <div class="form-group col-md-12 pl-md-0 pr-md-0">
+                <input type="text" class="form-control login-custm-form" id="txtaddress" placeholder="Address" onchange="ClearBorder()">
+            </div>
+            <div class="form-group col-md-12 pl-md-0 pr-md-0">
+                <input type="email" class="form-control login-custm-form" id="txtEmail" placeholder="Email" onchange="ClearBorder()">
+            </div>
+            <div class="form-group col-md-12 pl-md-0 pr-md-0">
+                <input type="number" class="form-control login-custm-form" id="txtphone" placeholder="Phone" onchange="ClearBorder()">
+            </div>
+
+
+
+            <input type="button" class="btn-success btn-lg" id="btnNext" value="Next">
+
+        </div>
+    </form>*@
+@*</center>*@
